@@ -87,10 +87,9 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
 
-  int counter = 5;
-  int status = 1;
+  int counter = 2;
   HAL_GPIO_WritePin(GPIOA, LED_RED_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(GPIOA, LED_YELLOW_Pin | LED_GREEN_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOA, LED_YELLOW_Pin, GPIO_PIN_SET);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -98,31 +97,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  if (counter > 0){
+	  if (counter>0){
 		  counter--;
 		  if (counter == 0){
-			  switch (status){
-			  	  case 0:
-			  		counter = 2;
-			  		HAL_GPIO_WritePin(GPIOA, LED_YELLOW_Pin , GPIO_PIN_RESET);
-			  		HAL_GPIO_WritePin(GPIOA, LED_RED_Pin | LED_GREEN_Pin, GPIO_PIN_SET);
-			  		status = 2;
-			  		break;
-			  	  case 1:
-				  	counter = 3;
-				  	HAL_GPIO_WritePin(GPIOA,  LED_GREEN_Pin, GPIO_PIN_RESET);
-				  	HAL_GPIO_WritePin(GPIOA, LED_YELLOW_Pin | LED_RED_Pin, GPIO_PIN_SET);
-				  	status = 0;
-				  	break;
-			  	  case 2:
-				  	counter = 5;
-				  	HAL_GPIO_WritePin(GPIOA, LED_RED_Pin, GPIO_PIN_RESET);
-				  	HAL_GPIO_WritePin(GPIOA, LED_YELLOW_Pin | LED_GREEN_Pin, GPIO_PIN_SET);
-				  	status = 1 ;
-				  	break;
-			  	  default:
-			  		break;
-			  }
+			  HAL_GPIO_TogglePin(GPIOA, LED_RED_Pin | LED_YELLOW_Pin);
 		  }
 	  }
 	  HAL_Delay(1000);
