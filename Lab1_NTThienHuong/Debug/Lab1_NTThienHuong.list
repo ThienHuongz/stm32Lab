@@ -110,32 +110,32 @@ int main(void)
   MX_GPIO_Init();
  800015a:	f000 f857 	bl	800020c <MX_GPIO_Init>
   /* USER CODE BEGIN 2 */
-  int count = 4 ;
+  uint16_t count = 4 ;
  800015e:	2304      	movs	r3, #4
- 8000160:	607b      	str	r3, [r7, #4]
+ 8000160:	80fb      	strh	r3, [r7, #6]
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
 	  HAL_GPIO_TogglePin(GPIOA, (uint16_t)(1<<count));
- 8000162:	2201      	movs	r2, #1
- 8000164:	687b      	ldr	r3, [r7, #4]
+ 8000162:	88fb      	ldrh	r3, [r7, #6]
+ 8000164:	2201      	movs	r2, #1
  8000166:	fa02 f303 	lsl.w	r3, r2, r3
  800016a:	b29b      	uxth	r3, r3
  800016c:	4619      	mov	r1, r3
  800016e:	4808      	ldr	r0, [pc, #32]	; (8000190 <main+0x44>)
  8000170:	f000 fbfa 	bl	8000968 <HAL_GPIO_TogglePin>
-	  count++;
- 8000174:	687b      	ldr	r3, [r7, #4]
+	  count+=1;
+ 8000174:	88fb      	ldrh	r3, [r7, #6]
  8000176:	3301      	adds	r3, #1
- 8000178:	607b      	str	r3, [r7, #4]
+ 8000178:	80fb      	strh	r3, [r7, #6]
 	  if (count > 15) count = 4;
- 800017a:	687b      	ldr	r3, [r7, #4]
+ 800017a:	88fb      	ldrh	r3, [r7, #6]
  800017c:	2b0f      	cmp	r3, #15
- 800017e:	dd01      	ble.n	8000184 <main+0x38>
+ 800017e:	d901      	bls.n	8000184 <main+0x38>
  8000180:	2304      	movs	r3, #4
- 8000182:	607b      	str	r3, [r7, #4]
+ 8000182:	80fb      	strh	r3, [r7, #6]
 	  HAL_Delay(1000);
  8000184:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  8000188:	f000 f952 	bl	8000430 <HAL_Delay>
@@ -269,11 +269,11 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_3_Pin|LED_RED_4_Pin
- 8000238:	2200      	movs	r2, #0
+ 8000238:	2201      	movs	r2, #1
  800023a:	f64f 71f0 	movw	r1, #65520	; 0xfff0
  800023e:	480c      	ldr	r0, [pc, #48]	; (8000270 <MX_GPIO_Init+0x64>)
  8000240:	f000 fb7a 	bl	8000938 <HAL_GPIO_WritePin>
-                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_RESET);
+                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pins : LED_RED_1_Pin LED_RED_2_Pin LED_RED_3_Pin LED_RED_4_Pin
                            LED_RED_5_Pin LED_RED_6_Pin LED_RED_7_Pin LED_RED_8_Pin

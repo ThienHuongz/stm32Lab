@@ -86,7 +86,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-  int count = 4 ;
+  uint16_t count = 4 ;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -94,7 +94,7 @@ int main(void)
   while (1)
   {
 	  HAL_GPIO_TogglePin(GPIOA, (uint16_t)(1<<count));
-	  count++;
+	  count+=1;
 	  if (count > 15) count = 4;
 	  HAL_Delay(1000);
 
@@ -159,7 +159,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_3_Pin|LED_RED_4_Pin
                           |LED_RED_5_Pin|LED_RED_6_Pin|LED_RED_7_Pin|LED_RED_8_Pin
-                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_RESET);
+                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pins : LED_RED_1_Pin LED_RED_2_Pin LED_RED_3_Pin LED_RED_4_Pin
                            LED_RED_5_Pin LED_RED_6_Pin LED_RED_7_Pin LED_RED_8_Pin
