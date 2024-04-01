@@ -56,120 +56,64 @@ static void MX_GPIO_Init(void);
 /* USER CODE BEGIN 0 */
 void display7SEG(int num)
 {
+    uint16_t segments[] = {A_Pin, B_Pin, C_Pin, D_Pin, E_Pin, F_Pin, G_Pin};
 
-	switch (num)
-	{
-		case 0:
-			HAL_GPIO_WritePin(GPIOB, A_Pin|B_Pin|C_Pin|D_Pin|
-			                         E_Pin|F_Pin, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOB, G_Pin, GPIO_PIN_SET);
-			break;
-		case 1:
-			HAL_GPIO_WritePin(GPIOB, A_Pin|D_Pin |E_Pin|F_Pin|
-					G_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOB, B_Pin| C_Pin, GPIO_PIN_RESET);
-			break;
-		case 2:
-			  HAL_GPIO_WritePin(GPIOB, A_Pin|B_Pin|D_Pin|
-			                          E_Pin|G_Pin, GPIO_PIN_RESET);
+    uint8_t patterns[] = {
+        0b0111111,  // 0
+        0b0000110,  // 1
+        0b1011011,  // 2
+        0b1001111,  // 3
+        0b1100110,  // 4
+        0b1101101,  // 5
+        0b1111101,  // 6
+        0b0000111,  // 7
+        0b1111111,  // 8
+        0b1101111   // 9
+    };
 
-			  HAL_GPIO_WritePin(GPIOB, F_Pin|C_Pin, GPIO_PIN_SET);
-			break;
-		  case 3:
-			  HAL_GPIO_WritePin(GPIOB, A_Pin|B_Pin|C_Pin|D_Pin|
-			                          G_Pin, GPIO_PIN_RESET);
-			  HAL_GPIO_WritePin(GPIOB, F_Pin|E_Pin, GPIO_PIN_SET);
-			break;
-		  case 4:
-			  HAL_GPIO_WritePin(GPIOB, B_Pin|C_Pin|F_Pin|G_Pin, GPIO_PIN_RESET);
-			  HAL_GPIO_WritePin(GPIOB, A_Pin|D_Pin|E_Pin, GPIO_PIN_SET);
-			break;
-		  case 5:
-			  HAL_GPIO_WritePin(GPIOB, A_Pin|C_Pin|D_Pin|
-			                          F_Pin|G_Pin, GPIO_PIN_RESET);
-			  HAL_GPIO_WritePin(GPIOB, B_Pin|E_Pin, GPIO_PIN_SET);
-			break;
-		  case 6:
-			  HAL_GPIO_WritePin(GPIOB, A_Pin|C_Pin|D_Pin|
-			                          E_Pin|F_Pin|G_Pin, GPIO_PIN_RESET);
-			  HAL_GPIO_WritePin(GPIOB, B_Pin, GPIO_PIN_SET);
-			break;
-		  case 7:
-			  HAL_GPIO_WritePin(GPIOB, A_Pin|B_Pin|C_Pin , GPIO_PIN_RESET);
-			  HAL_GPIO_WritePin(GPIOB, D_Pin|E_Pin|F_Pin|G_Pin, GPIO_PIN_SET);
-			break;
-		  case 8:
-			  HAL_GPIO_WritePin(GPIOB, A_Pin|B_Pin|C_Pin|D_Pin|
-			                          E_Pin|F_Pin|G_Pin, GPIO_PIN_RESET);
-			break;
-		  case 9:
-			  HAL_GPIO_WritePin(GPIOB, A_Pin|B_Pin|C_Pin|D_Pin|
-			                          F_Pin|G_Pin, GPIO_PIN_RESET);
-			  HAL_GPIO_WritePin(GPIOB, E_Pin, GPIO_PIN_SET);
-			break;
-		  default:
-			  HAL_GPIO_WritePin(GPIOB, A_Pin|B_Pin|C_Pin|D_Pin|
-			                          E_Pin|F_Pin|G_Pin, GPIO_PIN_RESET);
-			break;
-	}
+    if (num >= 0 && num <= 9) {
+        uint8_t pattern = patterns[num];
+
+        for (int i = 0; i < 7; i++) {
+            // Check if the i-th bit of pattern is set (1)
+            if ((pattern >> i) & 0x01) {
+                HAL_GPIO_WritePin(GPIOB, segments[i], GPIO_PIN_RESET);
+            } else {
+                HAL_GPIO_WritePin(GPIOB, segments[i], GPIO_PIN_SET);
+            }
+        }
+    }
 }
+
 void display7SEG2(int num)
 {
-	switch (num)
-	{
-		case 0:
-			HAL_GPIO_WritePin(GPIOB, A_2_Pin|B_2_Pin|C_2_Pin|D_2_Pin|
-			                         E_2_Pin|F_2_Pin, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOB, G_2_Pin, GPIO_PIN_SET);
-			break;
-		case 1:
-			HAL_GPIO_WritePin(GPIOB, A_2_Pin|D_2_Pin| E_2_Pin|F_2_Pin|
-					G_2_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOB, B_2_Pin| C_2_Pin, GPIO_PIN_RESET);
-			break;
-		case 2:
-			  HAL_GPIO_WritePin(GPIOB, A_2_Pin|B_2_Pin|D_2_Pin|
-			                          E_2_Pin|G_2_Pin, GPIO_PIN_RESET);
+    uint16_t segments[] = {A_2_Pin, B_2_Pin, C_2_Pin, D_2_Pin, E_2_Pin, F_2_Pin, G_2_Pin};
 
-			  HAL_GPIO_WritePin(GPIOB, F_2_Pin|C_2_Pin, GPIO_PIN_SET);
-			break;
-		  case 3:
-			  HAL_GPIO_WritePin(GPIOB, A_2_Pin|B_2_Pin|C_2_Pin|D_2_Pin|
-			                          G_2_Pin, GPIO_PIN_RESET);
-			  HAL_GPIO_WritePin(GPIOB, F_2_Pin|E_2_Pin, GPIO_PIN_SET);
-			break;
-		  case 4:
-			  HAL_GPIO_WritePin(GPIOB, B_2_Pin|C_2_Pin|F_2_Pin|G_2_Pin, GPIO_PIN_RESET);
-			  HAL_GPIO_WritePin(GPIOB, A_2_Pin|D_2_Pin|E_2_Pin, GPIO_PIN_SET);
-			break;
-		  case 5:
-			  HAL_GPIO_WritePin(GPIOB, A_2_Pin|C_2_Pin|D_2_Pin|
-			                          F_2_Pin|G_2_Pin, GPIO_PIN_RESET);
-			  HAL_GPIO_WritePin(GPIOB, B_2_Pin|E_2_Pin, GPIO_PIN_SET);
-			break;
-		  case 6:
-			  HAL_GPIO_WritePin(GPIOB, A_2_Pin|C_2_Pin|D_2_Pin|
-			                          E_2_Pin|F_2_Pin|G_2_Pin, GPIO_PIN_RESET);
-			  HAL_GPIO_WritePin(GPIOB, B_2_Pin, GPIO_PIN_SET);
-			break;
-		  case 7:
-			  HAL_GPIO_WritePin(GPIOB, A_2_Pin|B_2_Pin|C_2_Pin , GPIO_PIN_RESET);
-			  HAL_GPIO_WritePin(GPIOB, D_2_Pin|E_2_Pin|F_2_Pin|G_2_Pin, GPIO_PIN_SET);
-			break;
-		  case 8:
-			  HAL_GPIO_WritePin(GPIOB, A_2_Pin|B_2_Pin|C_2_Pin|D_2_Pin|
-			                          E_2_Pin|F_2_Pin|G_2_Pin, GPIO_PIN_RESET);
-			break;
-		  case 9:
-			  HAL_GPIO_WritePin(GPIOB, A_2_Pin|B_2_Pin|C_2_Pin|D_2_Pin|
-			                          F_2_Pin|G_2_Pin, GPIO_PIN_RESET);
-			  HAL_GPIO_WritePin(GPIOB, E_2_Pin, GPIO_PIN_SET);
-			break;
-		  default:
-			  HAL_GPIO_WritePin(GPIOB, A_2_Pin|B_2_Pin|C_2_Pin|D_2_Pin|
-			                          E_2_Pin|F_2_Pin|G_2_Pin, GPIO_PIN_RESET);
-			break;
-	}
+    uint8_t patterns[] = {
+        0b0111111,  // 0
+        0b0000110,  // 1
+        0b1011011,  // 2
+        0b1001111,  // 3
+        0b1100110,  // 4
+        0b1101101,  // 5
+        0b1111101,  // 6
+        0b0000111,  // 7
+        0b1111111,  // 8
+        0b1101111   // 9
+    };
+
+    if (num >= 0 && num <= 9) {
+        uint8_t pattern = patterns[num];
+
+        for (int i = 0; i < 7; i++) {
+            // Check if the i-th bit of pattern is set (1)
+            if ((pattern >> i) & 0x01) {
+                HAL_GPIO_WritePin(GPIOB, segments[i], GPIO_PIN_RESET);
+            } else {
+                HAL_GPIO_WritePin(GPIOB, segments[i], GPIO_PIN_SET);
+            }
+        }
+    }
 }
 
 /* USER CODE END 0 */
