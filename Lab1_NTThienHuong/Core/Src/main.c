@@ -86,95 +86,16 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-  int count = 0 ;
+  int count = 4 ;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if (count > 12 ) count = 0;
-	  switch (count++){
-	  	  case 0:
-	  		HAL_GPIO_WritePin(LED_RED_12_GPIO_Port, LED_RED_12_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_3_Pin|LED_RED_4_Pin
-	  	                          |LED_RED_5_Pin|LED_RED_6_Pin|LED_RED_7_Pin|LED_RED_8_Pin
-	  	                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin, GPIO_PIN_SET);
-	  		  break;
-	  	  case 1:
-	  		HAL_GPIO_WritePin(LED_RED_1_GPIO_Port, LED_RED_1_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA,LED_RED_2_Pin|LED_RED_3_Pin|LED_RED_4_Pin
-	  	                          |LED_RED_5_Pin|LED_RED_6_Pin|LED_RED_7_Pin|LED_RED_8_Pin
-	  	                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
-	  		  break;
-	  	  case 2:
-	  		HAL_GPIO_WritePin(LED_RED_2_GPIO_Port, LED_RED_2_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_3_Pin|LED_RED_4_Pin
-	  	                          |LED_RED_5_Pin|LED_RED_6_Pin|LED_RED_7_Pin|LED_RED_8_Pin
-	  	                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
-	  		  break;
-	  	  case 3:
-	  		HAL_GPIO_WritePin(LED_RED_3_GPIO_Port, LED_RED_3_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_4_Pin
-	  	                          |LED_RED_5_Pin|LED_RED_6_Pin|LED_RED_7_Pin|LED_RED_8_Pin
-	  	                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
-	  		  break;
-	  	  case 4:
-	  		HAL_GPIO_WritePin(LED_RED_4_GPIO_Port, LED_RED_4_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_3_Pin
-	  	                          |LED_RED_5_Pin|LED_RED_6_Pin|LED_RED_7_Pin|LED_RED_8_Pin
-	  	                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
-	  		  break;
-	  	  case 5:
-	  		HAL_GPIO_WritePin(LED_RED_5_GPIO_Port, LED_RED_5_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_3_Pin|LED_RED_4_Pin
-	  	                          |LED_RED_6_Pin|LED_RED_7_Pin|LED_RED_8_Pin
-	  	                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
-	  		  break;
-	  	  case 6:
-	  		HAL_GPIO_WritePin(LED_RED_6_GPIO_Port, LED_RED_6_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_3_Pin|LED_RED_4_Pin
-	  	                          |LED_RED_5_Pin|LED_RED_7_Pin|LED_RED_8_Pin
-	  	                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
-	  		  break;
-	  	  case 7:
-	  		HAL_GPIO_WritePin(LED_RED_7_GPIO_Port, LED_RED_7_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_3_Pin|LED_RED_4_Pin
-	  	                          |LED_RED_5_Pin|LED_RED_6_Pin|LED_RED_8_Pin
-	  	                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
-	  		  break;
-	  	  case 8:
-	  		HAL_GPIO_WritePin(LED_RED_8_GPIO_Port, LED_RED_8_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_3_Pin|LED_RED_4_Pin
-	  	                          |LED_RED_5_Pin|LED_RED_6_Pin|LED_RED_7_Pin
-	  	                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
-	  		  break;
-	  	  case 9:
-	  		HAL_GPIO_WritePin(LED_RED_9_GPIO_Port, LED_RED_9_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_3_Pin|LED_RED_4_Pin
-	  	                          |LED_RED_5_Pin|LED_RED_6_Pin|LED_RED_7_Pin|LED_RED_8_Pin
-	  	                          |LED_RED_10_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
-	  		  break;
-	  	  case 10:
-	  		HAL_GPIO_WritePin(LED_RED_10_GPIO_Port, LED_RED_10_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_3_Pin|LED_RED_4_Pin
-	  	                          |LED_RED_5_Pin|LED_RED_6_Pin|LED_RED_7_Pin|LED_RED_8_Pin
-	  	                          |LED_RED_9_Pin|LED_RED_11_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
-	  		  break;
-	  	  case 11:
-	  		HAL_GPIO_WritePin(LED_RED_11_GPIO_Port, LED_RED_11_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_3_Pin|LED_RED_4_Pin
-	  	                          |LED_RED_5_Pin|LED_RED_6_Pin|LED_RED_7_Pin|LED_RED_8_Pin
-	  	                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_12_Pin, GPIO_PIN_SET);
-	  		  break;
-	  	  default:
-	  		HAL_GPIO_WritePin(LED_RED_12_GPIO_Port, LED_RED_12_Pin, GPIO_PIN_RESET);
-	  		HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_RED_2_Pin|LED_RED_3_Pin|LED_RED_4_Pin
-	  	                          |LED_RED_5_Pin|LED_RED_6_Pin|LED_RED_7_Pin|LED_RED_8_Pin
-	  	                          |LED_RED_9_Pin|LED_RED_10_Pin|LED_RED_11_Pin, GPIO_PIN_SET);
-	  		  break;
-
-	  }
+	  HAL_GPIO_TogglePin(GPIOA, (uint16_t)(1<<count));
+	  count++;
+	  if (count > 15) count = 4;
 	  HAL_Delay(1000);
 
     /* USER CODE END WHILE */
